@@ -1,5 +1,7 @@
 package smarthome;
 
+import abstractModel.Relation;
+
 public class Environment extends Relation {
     private EnvironmentInputVariableSet EI;
     private EnvironmentParameterVariableSet EP;

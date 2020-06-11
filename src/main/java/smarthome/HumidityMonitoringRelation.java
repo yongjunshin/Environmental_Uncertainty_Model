@@ -1,5 +1,7 @@
 package smarthome;
 
+import abstractModel.Relation;
+
 public class HumidityMonitoringRelation extends Relation {
     private EnvironmentOutputVariableSet EO;
     private SystemInputVariableSet SI;

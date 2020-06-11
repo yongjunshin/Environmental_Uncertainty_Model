@@ -1,5 +1,9 @@
 package smarthome;
 
+import abstractModel.Relation;
+import javafx.util.Pair;
+import util.FileManager;
+
 import java.util.ArrayList;
 
 public class smarthomeSimulation {
@@ -12,6 +16,9 @@ public class smarthomeSimulation {
     private Environment E;
     private ArrayList<Relation> MR;
     private ArrayList<Relation> ER;
+
+    private static ArrayList<Double> outdoorTemperature;
+    private static ArrayList<Double> outdoorHumidity;
 
     public smarthomeSimulation(){
         initModel();
@@ -49,14 +56,25 @@ public class smarthomeSimulation {
             for(Relation r:ER){
                 r.relationMapping();
             }
-            updateEnvironmentParameter();
+            updateEnvironmentParameter(simTime);
             logs.add(new Log(simTime, EP.clone(), EO.clone(), SI.clone(), SO.clone(), EI.clone()));
         }
     }
 
-    private void updateEnvironmentParameter() {
+    private void updateEnvironmentParameter(int t) {
         //todo
-        EP.setOutdoorTemperature(EP.getOutdoorTemperature() + 1);
-        EP.setOutdoorHumidity(EP.getOutdoorHumidity() - 1);
+        if (outdoorTemperature == null || outdoorHumidity == null){
+            ArrayList<Pair<String, String>> config = FileManager.readConfiguration("src/main/resources/smarthome/2018 WED.txt");
+
+            if(outdoorTemperature == null){
+                outdoorTemperature = FileManager.stringToDoubleList(FileManager.getValueFromConfigDictionary(config, "temperature"));
+            }
+            if(outdoorHumidity == null){
+                outdoorHumidity = FileManager.stringToDoubleList(FileManager.getValueFromConfigDictionary(config, "humidity"));
+            }
+        }
+
+        EP.setOutdoorTemperature(outdoorTemperature.get(t-1));
+        EP.setOutdoorHumidity(outdoorHumidity.get(t-1));
     }
 }

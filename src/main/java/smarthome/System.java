@@ -1,5 +1,7 @@
 package smarthome;
 
+import abstractModel.Relation;
+
 public class System extends Relation {
     private SystemInputVariableSet SI;
     private SystemOutputVariableSet SO;

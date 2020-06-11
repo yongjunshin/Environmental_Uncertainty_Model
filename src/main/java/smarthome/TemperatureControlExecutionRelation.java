@@ -1,5 +1,7 @@
 package smarthome;
 
+import abstractModel.Relation;
+
 public class TemperatureControlExecutionRelation extends Relation {
     private SystemOutputVariableSet SO;
     private EnvironmentInputVariableSet EI;
