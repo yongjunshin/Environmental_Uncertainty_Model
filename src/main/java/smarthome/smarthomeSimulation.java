@@ -17,8 +17,8 @@ public class smarthomeSimulation {
     private ArrayList<Relation> MR;
     private ArrayList<Relation> ER;
 
-    private static ArrayList<Double> outdoorTemperature;
-    private static ArrayList<Double> outdoorHumidity;
+    private ArrayList<Double> outdoorTemperature;
+    private ArrayList<Double> outdoorHumidity;
 
     public smarthomeSimulation(){
         initModel();
@@ -43,7 +43,7 @@ public class smarthomeSimulation {
         ER.add(new HumidityControlExecutionRelation(SO, EI));
     }
 
-    public void executeSimulation(int simEndTime) throws CloneNotSupportedException {
+    public ArrayList<Log> executeSimulation(int simEndTime) throws CloneNotSupportedException {
         ArrayList<Log> logs = new ArrayList<Log>();
         int simTime = 0;
         while(simTime < simEndTime){
@@ -57,8 +57,9 @@ public class smarthomeSimulation {
                 r.relationMapping();
             }
             updateEnvironmentParameter(simTime);
-            logs.add(new Log(simTime, EP.clone(), EO.clone(), SI.clone(), SO.clone(), EI.clone()));
+            logs.add(new Log(simTime, EO.clone(), SI.clone(), SO.clone(), EI.clone(), EP.clone()));
         }
+        return logs;
     }
 
     private void updateEnvironmentParameter(int t) {

@@ -15,8 +15,8 @@ public class Environment extends Relation {
 
     public void relationMapping() {
         //todo: value assign to EO depending on value of EI and EP
-        double outdoorTemperatureTransfer = (EP.getOutdoorTemperature() - EO.getIndoorTemperature()) * 0.5;
-        double outdoorHumidityTransfer = (EP.getOutdoorHumidity() - EO.getIndoorHumidity()) * 0.5;
+        double outdoorTemperatureTransfer = (EP.getOutdoorTemperature() - EO.getIndoorTemperature()) * 0.2;
+        double outdoorHumidityTransfer = (EP.getOutdoorHumidity() - EO.getIndoorHumidity()) * 0.2;
 
         EO.setIndoorTemperature(EO.getIndoorTemperature() + outdoorTemperatureTransfer + EI.getExecutedTemperatureControl());
         EO.setIndoorHumidity(EO.getIndoorHumidity() + outdoorHumidityTransfer + EI.getExecutedHumidityControl());

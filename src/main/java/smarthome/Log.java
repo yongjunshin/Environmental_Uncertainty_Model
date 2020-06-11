@@ -8,21 +8,17 @@ public class Log {
     private SystemOutputVariableSet SO;
     private EnvironmentInputVariableSet EI;
 
-    public Log(int t, EnvironmentParameterVariableSet ep, EnvironmentOutputVariableSet eo, SystemInputVariableSet si, SystemOutputVariableSet so, EnvironmentInputVariableSet ei){
+    public Log(int t, EnvironmentOutputVariableSet eo, SystemInputVariableSet si, SystemOutputVariableSet so, EnvironmentInputVariableSet ei, EnvironmentParameterVariableSet ep){
         time = t;
-        EP = ep;
         EO = eo;
         SI = si;
         SO = so;
         EI = ei;
+        EP = ep;
     }
 
     public int getTime() {
         return time;
-    }
-
-    public EnvironmentParameterVariableSet getEP() {
-        return EP;
     }
 
     public EnvironmentOutputVariableSet getEO() {
@@ -39,5 +35,9 @@ public class Log {
 
     public EnvironmentInputVariableSet getEI() {
         return EI;
+    }
+
+    public EnvironmentParameterVariableSet getEP() {
+        return EP;
     }
 }

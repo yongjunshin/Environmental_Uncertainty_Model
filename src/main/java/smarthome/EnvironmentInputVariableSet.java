@@ -2,8 +2,8 @@ package smarthome;
 
 public class EnvironmentInputVariableSet implements Cloneable {
     //todo: define variables and getters/setters, and initialize the variables
-    private Double executedTemperatureControl;
-    private Double executedHumidityControl;
+    private double executedTemperatureControl;
+    private double executedHumidityControl;
 
     public EnvironmentInputVariableSet() {
         this.executedTemperatureControl = 0.0;
@@ -11,19 +11,19 @@ public class EnvironmentInputVariableSet implements Cloneable {
     }
 
 
-    public Double getExecutedTemperatureControl() {
+    public double getExecutedTemperatureControl() {
         return executedTemperatureControl;
     }
 
-    public void setExecutedTemperatureControl(Double executedTemperatureControl) {
+    public void setExecutedTemperatureControl(double executedTemperatureControl) {
         this.executedTemperatureControl = executedTemperatureControl;
     }
 
-    public Double getExecutedHumidityControl() {
+    public double getExecutedHumidityControl() {
         return executedHumidityControl;
     }
 
-    public void setExecutedHumidityControl(Double executedHumidityControl) {
+    public void setExecutedHumidityControl(double executedHumidityControl) {
         this.executedHumidityControl = executedHumidityControl;
     }
 

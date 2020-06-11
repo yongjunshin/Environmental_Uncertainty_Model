@@ -1,6 +1,7 @@
 package util;
 
 import javafx.util.Pair;
+import smarthome.Log;
 
 import java.io.BufferedReader;
 import java.io.File;
