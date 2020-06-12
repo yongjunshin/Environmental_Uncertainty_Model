@@ -1,6 +1,8 @@
-package smarthome;
+package smarthome.exeRel;
 
 import abstractModel.Relation;
+import smarthome.EnvironmentInputVariableSet;
+import smarthome.SystemOutputVariableSet;
 
 import java.util.Random;
 

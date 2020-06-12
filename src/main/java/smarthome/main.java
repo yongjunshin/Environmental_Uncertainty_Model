@@ -10,10 +10,10 @@ public class main {
     public static void main(String[] args) throws CloneNotSupportedException {
         smarthomeSimulation smarthomeSim = new smarthomeSimulation();
         ArrayList<Log> simLogs = smarthomeSim.executeSimulation(1248);
-        exportLogsToCSV(simLogs, "src/main/java/smarthome/output/" + "smarthomeSimResult.csv");
+        exportSmartHomeLogsToCSV(simLogs, "src/main/java/smarthome/output/" + "smarthomeSimResult.csv");
     }
 
-    private static void exportLogsToCSV(ArrayList<Log> logs, String fileLocName){
+    private static void exportSmartHomeLogsToCSV(ArrayList<Log> logs, String fileLocName){
         File file = new File(fileLocName);
         try {
             FileWriter fw = new FileWriter(file);

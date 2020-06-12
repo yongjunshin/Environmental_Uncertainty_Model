@@ -14,9 +14,7 @@ public class SystemInputVariableSet implements Cloneable {
         return monitoredTemperature;
     }
 
-    public void setMonitoredTemperature(Double monitoredTemperature) {
-        this.monitoredTemperature = monitoredTemperature;
-    }
+    public void setMonitoredTemperature(Double monitoredTemperature) { this.monitoredTemperature = monitoredTemperature; }
 
     public Double getMonitoredHumidity() {
         return monitoredHumidity;

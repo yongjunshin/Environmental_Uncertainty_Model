@@ -1,6 +1,9 @@
-package smarthome;
+package smarthome.monRel;
 
 import abstractModel.Relation;
+import smarthome.EnvironmentOutputVariableSet;
+import smarthome.SystemInputVariableSet;
+
 import java.util.Random;
 
 public class TemperatureMonitoringRelation extends Relation {
