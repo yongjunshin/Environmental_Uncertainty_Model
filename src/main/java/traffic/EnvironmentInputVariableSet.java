@@ -2,134 +2,34 @@ package traffic;
 
 public class EnvironmentInputVariableSet implements Cloneable {
     //todo: define variables and getters/setters, and initialize the variables
-    private Signal executedSignalAtoB;
-    private Signal executedSignalAtoC;
-    private Signal executedSignalAtoD;
-
-    private Signal executedSignalBtoA;
-    private Signal executedSignalBtoC;
-    private Signal executedSignalBtoD;
-
-    private Signal executedSignalCtoA;
-    private Signal executedSignalCtoB;
-    private Signal executedSignalCtoD;
-
-    private Signal executedSignalDtoA;
-    private Signal executedSignalDtoB;
-    private Signal executedSignalDtoC;
+    private Signal[] executedSignals = new Signal[16];
 
     public EnvironmentInputVariableSet() {
-        this.executedSignalAtoB = null;
-        this.executedSignalAtoC = null;
-        this.executedSignalAtoD = null;
-        this.executedSignalBtoA = null;
-        this.executedSignalBtoC = null;
-        this.executedSignalBtoD = null;
-        this.executedSignalCtoA = null;
-        this.executedSignalCtoB = null;
-        this.executedSignalCtoD = null;
-        this.executedSignalDtoA = null;
-        this.executedSignalDtoB = null;
-        this.executedSignalDtoC = null;
+        for(int i = 0; i < executedSignals.length; i++){
+            executedSignals[i] = null;
+        }
     }
 
-    public Signal getExecutedSignalAtoB() {
-        return executedSignalAtoB;
+    public Signal[] getExecutedSignals() {
+        return executedSignals;
     }
 
-    public void setExecutedSignalAtoB(Signal executedSignalAtoB) {
-        this.executedSignalAtoB = executedSignalAtoB;
+    public void setExecutedSignals(Signal[] executedSignals) {
+        this.executedSignals = executedSignals;
     }
 
-    public Signal getExecutedSignalAtoC() {
-        return executedSignalAtoC;
+    public Signal getExecutedSignalsSrc2Dest(int src, int dest) {
+        return executedSignals[src * 4 + dest];
     }
 
-    public void setExecutedSignalAtoC(Signal executedSignalAtoC) {
-        this.executedSignalAtoC = executedSignalAtoC;
-    }
-
-    public Signal getExecutedSignalAtoD() {
-        return executedSignalAtoD;
-    }
-
-    public void setExecutedSignalAtoD(Signal executedSignalAtoD) {
-        this.executedSignalAtoD = executedSignalAtoD;
-    }
-
-    public Signal getExecutedSignalBtoA() {
-        return executedSignalBtoA;
-    }
-
-    public void setExecutedSignalBtoA(Signal executedSignalBtoA) {
-        this.executedSignalBtoA = executedSignalBtoA;
-    }
-
-    public Signal getExecutedSignalBtoC() {
-        return executedSignalBtoC;
-    }
-
-    public void setExecutedSignalBtoC(Signal executedSignalBtoC) {
-        this.executedSignalBtoC = executedSignalBtoC;
-    }
-
-    public Signal getExecutedSignalBtoD() {
-        return executedSignalBtoD;
-    }
-
-    public void setExecutedSignalBtoD(Signal executedSignalBtoD) {
-        this.executedSignalBtoD = executedSignalBtoD;
-    }
-
-    public Signal getExecutedSignalCtoA() {
-        return executedSignalCtoA;
-    }
-
-    public void setExecutedSignalCtoA(Signal executedSignalCtoA) {
-        this.executedSignalCtoA = executedSignalCtoA;
-    }
-
-    public Signal getExecutedSignalCtoB() {
-        return executedSignalCtoB;
-    }
-
-    public void setExecutedSignalCtoB(Signal executedSignalCtoB) {
-        this.executedSignalCtoB = executedSignalCtoB;
-    }
-
-    public Signal getExecutedSignalCtoD() {
-        return executedSignalCtoD;
-    }
-
-    public void setExecutedSignalCtoD(Signal executedSignalCtoD) {
-        this.executedSignalCtoD = executedSignalCtoD;
-    }
-
-    public Signal getExecutedSignalDtoA() {
-        return executedSignalDtoA;
-    }
-
-    public void setExecutedSignalDtoA(Signal executedSignalDtoA) {
-        this.executedSignalDtoA = executedSignalDtoA;
-    }
-
-    public Signal getExecutedSignalDtoB() {
-        return executedSignalDtoB;
-    }
-
-    public void setExecutedSignalDtoB(Signal executedSignalDtoB) {
-        this.executedSignalDtoB = executedSignalDtoB;
-    }
-
-    public Signal getExecutedSignalDtoC() {
-        return executedSignalDtoC;
-    }
-
-    public void setExecutedSignalDtoC(Signal executedSignalDtoC) {
-        this.executedSignalDtoC = executedSignalDtoC;
+    public void setExecutedSignalsSrc2Dest(int src, int dest, Signal setSignal) {
+        this.executedSignals[src * 4 + dest] = setSignal;
     }
 
     public EnvironmentInputVariableSet clone() throws CloneNotSupportedException {
-        return (EnvironmentInputVariableSet)super.clone();
+        EnvironmentInputVariableSet c = (EnvironmentInputVariableSet)super.clone();
+        c.setExecutedSignals(c.getExecutedSignals().clone());
+
+        return c;
     }
 }

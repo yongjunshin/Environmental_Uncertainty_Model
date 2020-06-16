@@ -1,11 +1,16 @@
 package traffic;
 
 public enum Signal {
-    RED(false),
-    GREEN(true);
-    boolean value;
+    RED("0"),
+    GREEN("1");
+    String signalName;
 
-    Signal(boolean b) {
-        value = b;
+    Signal(String sigName) {
+        signalName = sigName;
+    }
+
+    @Override
+    public String toString() {
+        return signalName;
     }
 }

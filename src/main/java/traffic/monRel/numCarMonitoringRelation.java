@@ -6,19 +6,26 @@ import traffic.SystemInputVariableSet;
 
 import java.util.Random;
 
-public class DtoAMonitoringRelation extends Relation {
+public class numCarMonitoringRelation extends Relation {
     private EnvironmentOutputVariableSet EO;
     private SystemInputVariableSet SI;
+
+    private int sourceRoad;
+    private int destinationRoad;
 
     private int noiseBoundary;
     private double failureRate;
 
-    public void relationMapping(EnvironmentOutputVariableSet eo, SystemInputVariableSet si) {
+
+    public numCarMonitoringRelation(EnvironmentOutputVariableSet eo, SystemInputVariableSet si, int noiseB, double failureR, int srcRoad, int destRoad) {
         EO = eo;
         SI = si;
 
-        noiseBoundary = 1;
-        failureRate = 0.01;
+        noiseBoundary = noiseB;
+        failureRate = failureR;
+
+        sourceRoad = srcRoad;
+        destinationRoad = destRoad;
     }
 
     public void relationMapping() {
@@ -27,9 +34,12 @@ public class DtoAMonitoringRelation extends Relation {
         Random random = new Random();
         if(random.nextFloat() < failureRate);   //monitoring failure
         else{
-            monitoredNumCar = EO.getNumCarDtoA();   //accurate monitoring
+            monitoredNumCar = EO.getNumCarsSrc2Dest(sourceRoad, destinationRoad);   //accurate monitoring
             monitoredNumCar = monitoredNumCar + (int)Math.round((random.nextFloat() * noiseBoundary) - ((double)noiseBoundary / 2));   //inaccurate monitoring
+            if (monitoredNumCar < 0){
+                monitoredNumCar = 0;
+            }
         }
-        SI.setMonitoredNumCarDtoA(monitoredNumCar);
+        SI.setMonitoredNumCarsSrc2Dest(sourceRoad, destinationRoad, monitoredNumCar);
     }
 }
