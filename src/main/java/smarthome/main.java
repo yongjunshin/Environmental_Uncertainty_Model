@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class main {
     public static void main(String[] args) throws CloneNotSupportedException {
-        smarthomeSimulation smarthomeSim = new smarthomeSimulation();
+        SmarthomeSimulation smarthomeSim = new SmarthomeSimulation();
         ArrayList<Log> simLogs = smarthomeSim.executeSimulation(1248);
         exportSmartHomeLogsToCSV(simLogs, "src/main/java/smarthome/output/" + "smarthomeSimResult.csv");
     }

@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 public class main {
     public static void main(String[] args) throws CloneNotSupportedException {
-        trafficSimulation trafficSim = new trafficSimulation();
+        TrafficSimulation trafficSim = new TrafficSimulation();
         ArrayList<Log> simLogs = trafficSim.executeSimulation(8640);
         exportTrafficLogsToCSV(simLogs, "src/main/java/traffic/output/" + "trafficSimResult.csv");
     }

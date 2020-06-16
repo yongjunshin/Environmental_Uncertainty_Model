@@ -1,16 +1,14 @@
-package smarthome;
+package traffic;
 
 import abstractModel.Relation;
 import javafx.util.Pair;
-import smarthome.exeRel.HumidityControlExecutionRelation;
-import smarthome.exeRel.TemperatureControlExecutionRelation;
-import smarthome.monRel.HumidityMonitoringRelation;
-import smarthome.monRel.TemperatureMonitoringRelation;
+import traffic.exeRel.signalExecutionRelation;
+import traffic.monRel.numCarMonitoringRelation;
 import util.FileManager;
 
 import java.util.ArrayList;
 
-public class smarthomeSimulation {
+public class TrafficSimulation {
     private SystemInputVariableSet SI;
     private SystemOutputVariableSet SO;
     private System S;
@@ -21,10 +19,9 @@ public class smarthomeSimulation {
     private ArrayList<Relation> MR;
     private ArrayList<Relation> ER;
 
-    private ArrayList<Double> outdoorTemperature;
-    private ArrayList<Double> outdoorHumidity;
+    private ArrayList<ArrayList<Integer>> trafficInflow;
 
-    public smarthomeSimulation(){
+    public TrafficSimulation(){
         initModel();
     }
 
@@ -39,12 +36,18 @@ public class smarthomeSimulation {
         E = new Environment(EI, EP, EO);
 
         MR = new ArrayList<Relation>();
-        MR.add(new TemperatureMonitoringRelation(EO, SI));
-        MR.add(new HumidityMonitoringRelation(EO, SI));
+        for (int src = 0; src < 4; src++){
+            for (int dest = 0; dest < 4; dest++){
+                MR.add(new numCarMonitoringRelation(EO, SI, 2, 0.01, src, dest));
+            }
+        }
 
         ER = new ArrayList<Relation>();
-        ER.add(new TemperatureControlExecutionRelation(SO, EI));
-        ER.add(new HumidityControlExecutionRelation(SO, EI));
+        for (int src = 0; src < 4; src++) {
+            for (int dest = 0; dest < 4; dest++) {
+                ER.add(new signalExecutionRelation(SO, EI, 0.01, src, dest));
+            }
+        }
     }
 
     public ArrayList<Log> executeSimulation(int simEndTime) throws CloneNotSupportedException {
@@ -68,18 +71,16 @@ public class smarthomeSimulation {
 
     private void updateEnvironmentParameter(int t) {
         //todo
-        if (outdoorTemperature == null || outdoorHumidity == null){
-            ArrayList<Pair<String, String>> config = FileManager.readConfiguration("src/main/resources/smarthome/2018 WED.txt");
-
-            if(outdoorTemperature == null){
-                outdoorTemperature = FileManager.stringToDoubleList(FileManager.getValueFromConfigDictionary(config, "temperature"));
-            }
-            if(outdoorHumidity == null){
-                outdoorHumidity = FileManager.stringToDoubleList(FileManager.getValueFromConfigDictionary(config, "humidity"));
-            }
+        if(trafficInflow == null){
+            trafficInflow = FileManager.readIntegerCSV("src/main/resources/traffic/inflow.csv");
         }
 
-        EP.setOutdoorTemperature(outdoorTemperature.get(t-1));
-        EP.setOutdoorHumidity(outdoorHumidity.get(t-1));
+        ArrayList<Integer> curInflow = trafficInflow.get(t-1);
+        int[] curInflowArray = new int[16];
+        for (int i=0; i<curInflow.size(); i++){
+            curInflowArray[i] = curInflow.get(i);
+        }
+
+        EP.setInflowNumCars(curInflowArray);
     }
 }
