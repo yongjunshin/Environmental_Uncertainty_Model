@@ -38,14 +38,14 @@ public class TrafficSimulation {
         MR = new ArrayList<Relation>();
         for (int src = 0; src < 4; src++){
             for (int dest = 0; dest < 4; dest++){
-                MR.add(new numCarMonitoringRelation(EO, SI, 2, 0.01, src, dest));
+                MR.add(new numCarMonitoringRelation(EO, SI, 2, 0.05, src, dest));
             }
         }
 
         ER = new ArrayList<Relation>();
         for (int src = 0; src < 4; src++) {
             for (int dest = 0; dest < 4; dest++) {
-                ER.add(new signalExecutionRelation(SO, EI, 0.01, src, dest));
+                ER.add(new signalExecutionRelation(SO, EI, 0.05, src, dest));
             }
         }
     }

@@ -18,7 +18,7 @@ public class TemperatureMonitoringRelation extends Relation {
         SI = si;
 
         noiseBoundary = 1.0;
-        failureRate = 0.01;
+        failureRate = 0.05;
     }
 
     public void relationMapping() {

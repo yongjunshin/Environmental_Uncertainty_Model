@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class main {
     public static void main(String[] args) throws CloneNotSupportedException {
         BoeingSimulation boeingSim = new BoeingSimulation();
-        ArrayList<Log> simLogs = boeingSim.executeSimulation(100);
+        ArrayList<Log> simLogs = boeingSim.executeSimulation(40);
         exportSmartHomeLogsToCSV(simLogs, "src/main/java/boeing/output/" + "BoeingSimResult.csv");
     }
 

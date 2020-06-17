@@ -39,6 +39,9 @@ public class System extends Relation {
                 SO.setTemperatureControl(tempControl);
             }
         }
+        else{
+            SO.setTemperatureControl(0.0);
+        }
 
         if (SI.getMonitoredHumidity() != null){
             double humiControl = humidityControlGoal - SI.getMonitoredHumidity();
@@ -51,6 +54,9 @@ public class System extends Relation {
             else{
                 SO.setHumidityControl(humiControl);
             }
+        }
+        else{
+            SO.setHumidityControl(0.0);
         }
     }
 }
